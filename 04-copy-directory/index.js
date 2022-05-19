@@ -32,3 +32,5 @@ const pathToCopiedFolder = Path.join(__dirname, 'files-copy');
 copyDir(pathToInitialFolder, pathToCopiedFolder)
   .then(() => console.log('Directory was successfully copied'))
   .catch((error) => console.log(`Something went wrong: ${error}`));
+
+module.exports.copyDir = copyDir;

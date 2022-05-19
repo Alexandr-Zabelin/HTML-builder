@@ -1,4 +1,4 @@
-async function BundleCss(pathToStylesFolder, pathToBundle) {
+async function bundleCss(pathToStylesFolder, pathToBundle) {
   try {
     const files = await FileSystemPromises.readdir(pathToStylesFolder, {withFileTypes: true});
     const writeStream = FileSystem.createWriteStream(pathToBundle);
@@ -12,6 +12,8 @@ async function BundleCss(pathToStylesFolder, pathToBundle) {
       }
 
       const readStream = FileSystem.createReadStream(pathToFile);
+
+      console.log(file.name);
 
       readStream.pipe(writeStream);
     }
@@ -28,6 +30,8 @@ const pathToStylesFolder = Path.join(__dirname, 'styles');
 const pathToBundle = Path.join(__dirname, 'project-dist', 'bundle.css');
 
 
-BundleCss(pathToStylesFolder, pathToBundle)
+bundleCss(pathToStylesFolder, pathToBundle)
   .then(() => console.log('The bundling was successful'))
   .catch((error) => console.log(error));
+
+module.exports.bundleCss = bundleCss;
