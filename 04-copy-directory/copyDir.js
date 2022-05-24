@@ -1,5 +1,17 @@
+async function deleteDir(path) {
+  try {
+    await FileSystemPromises.access(path);
+    await FileSystemPromises.rm(path, {recursive: true});
+  } catch {
+    return new Promise((resolve) => {
+      resolve();
+    });
+  }
+}
+
 async function copyDir(pathToInitialFolder, pathToCopiedFolder) {
   try {
+    await deleteDir(pathToCopiedFolder);
     await FileSystemPromises.mkdir(pathToCopiedFolder, {recursive: true});
 
     const files = await FileSystemPromises.readdir(pathToInitialFolder, {withFileTypes: true});
