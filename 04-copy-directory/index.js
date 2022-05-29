@@ -1,5 +1,5 @@
 const Path = require('path');
-const { copyDir } = require(Path.join(__dirname, './copyDir'));
+const { copyDir } = require(Path.join(__dirname, 'copyDir'));
 
 const pathToInitialFolder = Path.join(__dirname, 'files');
 const pathToCopiedFolder = Path.join(__dirname, 'files-copy');
